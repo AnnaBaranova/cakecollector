@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Cake List</h1>
+
+{% for cake in cakes %}
+  <div class="card">
+    <div class="card-content">
+      <span class="card-title">{{ cake.name }}</span>
+      <p>Cal: {{ cake.cal}}</p>
+      <p>Description: {{ cake.description }}</p>
+    </div>
+  </div>
+{% endfor %}
+
+{% endblock %}
