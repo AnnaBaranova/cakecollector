@@ -4,13 +4,15 @@
 <h1>Cake List</h1>
 
 {% for cake in cakes %}
-  <div class="card">
+<div class="card">
+  <a href="{% url 'detail' cake.id %}">
     <div class="card-content">
       <span class="card-title">{{ cake.name }}</span>
       <p>Cal: {{ cake.cal}}</p>
       <p>Description: {{ cake.description }}</p>
     </div>
-  </div>
+  </a>
+</div>
 {% endfor %}
 
 {% endblock %}
