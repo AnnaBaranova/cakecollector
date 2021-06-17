@@ -25,3 +25,12 @@ class CakeCreate(CreateView):
   model = Cake
   fields = '__all__'
   success_url = '/cakes/'
+
+
+class CakeUpdate(UpdateView):
+  model = Cake
+  fields = '__all__'
+
+class CakeDelete(DeleteView):
+  model = Cake
+  success_url = '/cakes/'

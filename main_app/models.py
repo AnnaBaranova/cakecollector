@@ -8,11 +8,11 @@ class Cake(models.Model):
     cal = models.IntegerField()
     description = models.TextField(max_length=100)
 
-def __str__(self):
-    return self.name
+    def __str__(self):
+        return self.name
 
-def get_absolute_url(self):
-    return reverse('detail', kwargs={'cake_id': self.id})
+    def get_absolute_url(self):
+        return reverse('detail', kwargs={'cake_id': self.id})
 
 
 

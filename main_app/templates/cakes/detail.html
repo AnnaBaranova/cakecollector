@@ -9,6 +9,10 @@
     <p>Cal: {{ cake.cal }}</p>
     <p>Description: {{ cake.description }}</p>
   </div>
+  <div class="card-action">
+    <a href="{% url 'cakes_update' cake.id %}">Edit</a>
+    <a href="{% url 'cakes_delete' cake.id %}">Delete</a>
+  </div>
 </div>
 
 {% endblock %}
