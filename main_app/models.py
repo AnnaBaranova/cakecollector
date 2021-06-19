@@ -36,7 +36,7 @@ class Combo(models.Model):
 
 
     class Meta:
-        ordering = ['-date']
+        ordering = ['date']
 
 
 

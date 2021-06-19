@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import Cake
 from .forms import ComboForm
@@ -38,3 +38,11 @@ class CakeUpdate(UpdateView):
 class CakeDelete(DeleteView):
   model = Cake
   success_url = '/cakes/'
+
+def add_combo(request, cake_id):
+  form = ComboForm(request.POST)
+  if form.is_valid():
+    new_combo = form.save(commit=False)
+    new_combo.cake_id = cake_id
+    new_combo.save()
+  return redirect('detail', cake_id=cake_id)
