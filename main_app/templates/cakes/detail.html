@@ -3,16 +3,35 @@
 
 <h1>Cake Details</h1>
 
-<div class="card">
-  <div class="card-content">
-    <span class="card-title">{{ cake.name }}</span>
-    <p>Cal: {{ cake.cal }}</p>
-    <p>Description: {{ cake.description }}</p>
-  </div>
-  <div class="card-action">
-    <a href="{% url 'cakes_update' cake.id %}">Edit</a>
-    <a href="{% url 'cakes_delete' cake.id %}">Delete</a>
-  </div>
+<div class="row">
+    <div class="col s6">
+        <div class="card">
+            <div class="card-content">
+                <span class="card-title">{{ cake.name }}</span>
+                <p>Cal: {{ cake.cal }}</p>
+                <p>Description: {{ cake.description }}</p>
+            </div>
+            <div class="card-action">
+                <a href="{% url 'cakes_update' cake.id %}">Edit</a>
+                <a href="{% url 'cakes_delete' cake.id %}">Delete</a>
+            </div>
+        </div>
+    </div>
+    <div class="col s6">
+        <table class="striped">
+          <thead>
+            <tr><th>Date</th><th>Combo</th></tr>
+          </thead>
+          <tbody>
+            {% for combo in cake.combo_set.all %}
+              <tr>
+                <td>{{combo.date}}</td>
+                <td>{{combo.get_drink_display}}</td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
 </div>
 
 {% endblock %}
