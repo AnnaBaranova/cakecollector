@@ -23,6 +23,12 @@
             {{combo_form.as_p}}
             <input type="submit" class="btn" value="Add Combo">
         </form>
+        <br>
+        {% if cake.combo_for_today %}
+        <div class="card-panel teal-text center-align">{{cake.name}} was taken with 3 or more times today</div>
+        {% else %}
+        <div class="card-panel red-text center-align">{{cake.name}} needs more combos today</div>
+        {% endif %}
         <table class="striped">
             <thead>
                 <tr>

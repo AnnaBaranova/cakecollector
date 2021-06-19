@@ -1,6 +1,7 @@
 from django.db import models
-from django.db.models.deletion import CASCADE
 from django.urls import reverse
+from datetime import date
+
 
 # Create your models here.
 
@@ -21,6 +22,9 @@ class Cake(models.Model):
 
     def get_absolute_url(self):
         return reverse('detail', kwargs={'cake_id': self.id})
+    
+    def combo_for_today(self):
+        return self.combo_set.filter(date=date.today()).count() >= len(DRINKS)
 
 class Combo(models.Model):
     date = models.DateField('Order date')
