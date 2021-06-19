@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import Cake
+from .forms import ComboForm
 
 # Create your views here.
 
@@ -19,7 +20,10 @@ def cakes_index(request):
 
 def cake_detail(request, cake_id):
   cake = Cake.objects.get(id=cake_id)
-  return render(request, 'cakes/detail.html', { 'cake': cake })
+  combo_form = ComboForm()
+  return render(request, 'cakes/detail.html', { 
+    'cake': cake, "combo_form": combo_form
+     })
 
 class CakeCreate(CreateView):
   model = Cake

@@ -18,20 +18,41 @@
         </div>
     </div>
     <div class="col s6">
+        <form method="post">
+            {% csrf_token %}
+            {{combo_form.as_p}}
+            <input type="submit" class="btn" value="Add Combo">
+        </form>
         <table class="striped">
-          <thead>
-            <tr><th>Date</th><th>Combo</th></tr>
-          </thead>
-          <tbody>
-            {% for combo in cake.combo_set.all %}
-              <tr>
-                <td>{{combo.date}}</td>
-                <td>{{combo.get_drink_display}}</td>
-              </tr>
-            {% endfor %}
-          </tbody>
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Combo</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for combo in cake.combo_set.all %}
+                <tr>
+                    <td>{{combo.date}}</td>
+                    <td>{{combo.get_drink_display}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
         </table>
-      </div>
+    </div>
 </div>
+
+<script>
+    var dateEl = document.getElementById('id_date');
+    window.M.Datepicker.init(dateEl, {
+        format: 'yyyy-mm-dd',
+        defaultDate: new Date(),
+        setDefaultDate: true,
+        autoClose: true
+    });
+
+    var selectEl = document.getElementById('id_drink');
+    window.M.FormSelect.init(selectEl);
+</script>
 
 {% endblock %}
