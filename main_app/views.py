@@ -8,6 +8,8 @@ from .forms import ComboForm
 
 from django.http import HttpResponse
 
+from main_app import models
+
 
 def home(request):
   return render(request, 'home.html')
@@ -50,3 +52,6 @@ def add_combo(request, cake_id):
 
 class ToppingList(ListView):
     model = Topping
+
+class ToppingDetail(DetailView):
+  model = Topping

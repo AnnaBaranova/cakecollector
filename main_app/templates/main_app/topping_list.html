@@ -4,7 +4,7 @@
 <h1>Topping List</h1>
 
 {% for topping in topping_list %}
- <a href="{% url 'topping_detail' topping.id %}">
+ <a href="{% url 'toppings_detail' topping.id %}">
     <div class="card">
         <div class="card-content">
             <span class="card-title">{{ topping.name }}</span>
