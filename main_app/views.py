@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from .models import Cake
+from django.views.generic import ListView, DetailView
+from .models import Cake, Topping
 from .forms import ComboForm
 
 # Create your views here.
@@ -46,3 +47,6 @@ def add_combo(request, cake_id):
     new_combo.cake_id = cake_id
     new_combo.save()
   return redirect('detail', cake_id=cake_id)
+
+class ToppingList(ListView):
+    model = Topping

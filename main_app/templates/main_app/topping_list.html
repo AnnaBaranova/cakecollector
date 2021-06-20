@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Topping List</h1>
+
+{% for topping in topping_list %}
+ <a href="{% url 'topping_detail' topping.id %}">
+    <div class="card">
+        <div class="card-content">
+            <span class="card-title">{{ topping.name }}</span>
+            <p>Portion: {{ topping.portion }}</p>
+        </div>
+    </div>
+  </a>
+{% endfor %}
+
+{% endblock %}
