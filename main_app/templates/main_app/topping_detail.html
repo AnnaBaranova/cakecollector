@@ -11,6 +11,8 @@
         <p>Portion: {{ topping.portion }}</p>
       </div>
       <div class="card-action">
+          <a href="{% url 'toppings_update' topping.id %}"> Edit</a>
+          <a href="{% url 'toppings_delete' topping.id %}"> Delete</a>
       </div>
     </div>
   </div>

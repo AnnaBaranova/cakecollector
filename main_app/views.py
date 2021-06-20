@@ -59,3 +59,11 @@ class ToppingDetail(DetailView):
 class ToppingCreate(CreateView):
     model = Topping
     fields = '__all__'
+
+class ToppingUpdate(UpdateView):
+    model = Topping
+    fields = ['portion']
+
+class ToppingDelete(DeleteView):
+    model = Topping
+    success_url = '/toppings/'
