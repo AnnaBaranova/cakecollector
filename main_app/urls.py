@@ -12,4 +12,5 @@ urlpatterns = [
     path('cakes/<int:cake_id>/add_combo/', views.add_combo, name='add_combo'),
     path('toppings/', views.ToppingList.as_view(), name='toppings_index'),
     path('toppings/<int:pk>', views.ToppingDetail.as_view(), name = 'toppings_detail'),
+    path('toppings/create', views.ToppingCreate.as_view(), name="toppings_create")
 ]

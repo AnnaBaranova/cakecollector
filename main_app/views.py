@@ -54,4 +54,8 @@ class ToppingList(ListView):
     model = Topping
 
 class ToppingDetail(DetailView):
-  model = Topping
+    model = Topping
+
+class ToppingCreate(CreateView):
+    model = Topping
+    fields = '__all__'
