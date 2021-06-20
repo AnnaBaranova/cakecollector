@@ -11,6 +11,14 @@ DRINKS = (
     ('W', 'Water'),
 )
 
+class Topping(models.Model):
+    name = models.CharField(max_length=20)
+    portion = models.IntegerField()
+
+    def __str__(self):
+        return self.name
+    def get_absolute_url(self):
+        return reverse('toppings_detail', kwargs={'pk': self.id})
 
 class Cake(models.Model):
     name = models.CharField(max_length=20)
