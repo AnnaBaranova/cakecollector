@@ -23,9 +23,11 @@ def cakes_index(request):
 
 def cake_detail(request, cake_id):
   cake = Cake.objects.get(id=cake_id)
+  cake_no_toppings = Topping.objects.exclude(id__in = cake.toppings.all().values_list('id'))
   combo_form = ComboForm()
   return render(request, 'cakes/detail.html', { 
-    'cake': cake, "combo_form": combo_form
+    'cake': cake, "combo_form": combo_form,
+    'toppings': cake_no_toppings
      })
 
 class CakeCreate(CreateView):
@@ -67,3 +69,11 @@ class ToppingUpdate(UpdateView):
 class ToppingDelete(DeleteView):
     model = Topping
     success_url = '/toppings/'
+
+def assoc_topping(request, cake_id, topping_id):
+  Cake.objects.get(id=cake_id).toppings.add(topping_id)
+  return redirect('detail', cake_id=cake_id)
+
+def unassoc_topping(request, cake_id, topping_id):
+  Cake.objects.get(id=cake_id).toppings.remove(topping_id)
+  return redirect('detail', cake_id=cake_id)

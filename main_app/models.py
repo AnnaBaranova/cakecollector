@@ -24,6 +24,7 @@ class Cake(models.Model):
     name = models.CharField(max_length=20)
     cal = models.IntegerField()
     description = models.TextField(max_length=100)
+    toppings = models.ManyToManyField(Topping)
 
     def __str__(self):
         return self.name
