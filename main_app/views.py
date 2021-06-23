@@ -1,8 +1,15 @@
 from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView, DetailView
-from .models import Cake, Topping
+import uuid
+import boto3
+import sys
+from .models import Cake, Topping, Photo
 from .forms import ComboForm
+
+
+S3_BASE_URL = 'https://s3.us-east-1.amazonaws.com/'
+BUCKET = 'annacakecollector'
 
 # Create your views here.
 
@@ -77,3 +84,22 @@ def assoc_topping(request, cake_id, topping_id):
 def unassoc_topping(request, cake_id, topping_id):
   Cake.objects.get(id=cake_id).toppings.remove(topping_id)
   return redirect('detail', cake_id=cake_id)
+
+
+def add_photo(request, cake_id):
+    photo_file = request.FILES.get('photo-file', None)
+    if photo_file:
+        s3 = boto3.client('s3')
+        # need a unique "key" for S3 / needs image file extension too
+        key = uuid.uuid4().hex[:6] + photo_file.name[photo_file.name.rfind('.'):]
+        # just in case something goes wrong
+        try:
+            s3.upload_fileobj(photo_file, BUCKET, key)
+            # build the full url string
+            url = f"{S3_BASE_URL}{BUCKET}/{key}"
+            # we can assign to cat_id or cat (if you have a cat object)
+            photo = Photo(url=url, cake_id=cake_id)
+            photo.save()
+        except Exception as e:
+            print('An error occurred uploading file to S3', e)
+    return redirect('detail', cake_id=cake_id)
