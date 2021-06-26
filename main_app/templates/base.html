@@ -21,11 +21,20 @@
                     <li><a href="/" class="left brand-logo">&nbsp;&nbsp;CakeCollector</a></li>
                 </ul>
                 <ul class="right">
+                    {%if user.is_authenticated %}
+                    <li>Hello, {{user.username | capfirst}}</li>
+                    {% endif %}
                     <li><a href="{% url 'about' %}">About</a></li>
+                    {%if user.is_authenticated %}
                     <li><a href="{% url 'toppings_create' %}">Add a Topping</a></li>
                     <li><a href="{% url 'toppings_index' %}">View All Toppings</a></li>
                     <li><a href="{% url 'cakes_create' %}">Add a Cake</a></li>
                     <li><a href="{% url 'index'%}">View All My Cakes</a></li>
+                    <li><a href="{% url 'logout'%}">Log Out</a></li>
+                    {% else %}
+                    <li><a href="{% url 'signup' %}">Sign Up</a></li>
+                    <li><a href="{% url 'login'%}">Log In</a></li>
+                    {% endif %}
                 </ul>
             </div>
         </nav>

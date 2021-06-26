@@ -16,6 +16,7 @@ urlpatterns = [
     path('toppings/create/', views.ToppingCreate.as_view(), name="toppings_create"),
     path('toppings/<int:pk>/update/', views.ToppingUpdate.as_view(), name='toppings_update'),
     path('toppings/<int:pk>/delete/', views.ToppingDelete.as_view(), name="toppings_delete"),
+    path('accounts/signup/', views.signup, name = 'signup'),
     path('cakes/<int:cake_id>/assoc_topping/<int:topping_id>/', views.assoc_topping, name='assoc_topping'),
     path('cakes/<int:cake_id>/unassoc_topping/<int:topping_id>/', views.unassoc_topping, name='unassoc_topping'),
     
